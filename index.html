@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feliz cumpleaños Alejandra</title>
+
     <style>
         body {
             margin: 0;
@@ -17,16 +18,22 @@
         }
 
         .heart {
-            width: 220px;
+            width: 40vw;
+            /* se adapta al ancho de pantalla */
+            max-width: 260px;
+            /* límite en PC */
+            min-width: 140px;
+            /* límite en celular */
+
             animation: spin 5s linear infinite, beat 1.2s ease-in-out infinite;
             transform-origin: center center;
             filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.45));
         }
 
         .heart svg {
-            display: block;
             width: 100%;
             height: auto;
+            display: block;
         }
 
         @keyframes spin {
@@ -50,25 +57,35 @@
                 transform: scale(1.07);
             }
         }
+
+        /* Ajuste extra para pantallas muy pequeñas */
+        @media (max-width: 400px) {
+            .heart {
+                width: 55vw;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="heart">
-        <svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corazón rojo">
+        <svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="heartGrad" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#ff4b4b" />
                     <stop offset="100%" stop-color="#a60000" />
                 </linearGradient>
+
                 <radialGradient id="shineGrad" cx="35%" cy="28%" r="35%">
                     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
                     <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
                 </radialGradient>
             </defs>
+
             <path
                 d="M100 30 C60 -10 15 25 15 70 C15 130 100 175 100 175 C100 175 185 130 185 70 C185 25 140 -10 100 30 Z"
                 fill="url(#heartGrad)" />
+
             <path
                 d="M58 48 C54 36 44 30 35 40 C30 55 42 68 55 70 C70 72 80 60 90 50 C96 44 104 42 110 45 C125 55 138 68 145 55 C150 43 140 30 131 40 C120 48 108 55 95 55 C82 55 70 50 58 48 Z"
                 fill="url(#shineGrad)" opacity="0.45" />
