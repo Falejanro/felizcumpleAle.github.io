@@ -4,93 +4,623 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz cumpleaños Alejandra</title>
+    <title>Feliz cumpleaños mi amor ❤️</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
+            background:
+                radial-gradient(circle at top, #331111 0%, #090909 40%, #000 100%);
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #000;
+            position: relative;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* ✨ estrellas */
+        .stars {
+            position: fixed;
+            inset: 0;
             overflow: hidden;
+            z-index: 0;
         }
 
-        .heart {
-            width: 40vw;
-            /* se adapta al ancho de pantalla */
-            max-width: 260px;
-            /* límite en PC */
-            min-width: 140px;
-            /* límite en celular */
-
-            animation: spin 5s linear infinite, beat 1.2s ease-in-out infinite;
-            transform-origin: center center;
-            filter: drop-shadow(0 0 35px rgba(255, 0, 0, 0.45));
+        .stars span {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: blink 3s infinite;
+            opacity: .4;
         }
 
-        .heart svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes beat {
+        @keyframes blink {
 
             0%,
             100% {
-                transform: scale(1);
+                opacity: .2;
             }
 
             50% {
-                transform: scale(1.07);
+                opacity: 1;
             }
         }
 
-        /* Ajuste extra para pantallas muy pequeñas */
-        @media (max-width: 400px) {
-            .heart {
-                width: 55vw;
+        /* ❤️ partículas */
+        .particle {
+            position: fixed;
+            color: #ff4d6d;
+            font-size: 14px;
+            animation: float 10s linear infinite;
+            opacity: .4;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh) scale(.5);
+            }
+
+            to {
+                transform: translateY(-120vh) scale(1.2);
+            }
+        }
+
+        /* 💖 tarjeta */
+        .card {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 650px;
+            border-radius: 35px;
+            overflow: hidden;
+            position: relative;
+
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(14px);
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            box-shadow:
+                0 0 60px rgba(255, 0, 90, .15),
+                0 25px 60px rgba(0, 0, 0, .7);
+
+            z-index: 2;
+        }
+
+        /* 📸 izquierda */
+        .left {
+            position: relative;
+            overflow: hidden;
+            min-height: 650px;
+        }
+
+        .main-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(.7);
+            animation: zoom 15s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        /* 🌙 overlay */
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top,
+                    rgba(0, 0, 0, .9),
+                    rgba(0, 0, 0, .2));
+        }
+
+        /* ❤️ texto foto */
+        .photo-text {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            z-index: 10;
+        }
+
+        .photo-text h1 {
+            font-size: 60px;
+            line-height: 1;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .photo-text p {
+            color: #ddd;
+            font-size: 17px;
+            width: 80%;
+        }
+
+        /* 💌 derecha */
+        .right {
+            padding: 55px 50px 40px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-y: auto;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 10px 18px;
+            background: rgba(255, 77, 109, .15);
+            border: 1px solid rgba(255, 77, 109, .4);
+            border-radius: 30px;
+            color: #ff7b94;
+            font-size: 14px;
+            margin-bottom: 25px;
+            width: max-content;
+        }
+
+        .right h2 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .right h2 span {
+            color: #ff4d6d;
+        }
+
+        .message {
+            color: #d9d9d9;
+            font-size: 17px;
+            line-height: 1.9;
+            margin-bottom: 35px;
+        }
+
+        .message h3 {
+            color: #ff4d6d;
+            font-size: 28px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        /* ❤️ botón */
+        .btn {
+            width: max-content;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff4d6d, #ff1744);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: .3s;
+            box-shadow: 0 10px 30px rgba(255, 0, 85, .35);
+            margin-bottom: 35px;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.03);
+        }
+
+        audio {
+            display: none;
+        }
+
+        /* 📸 recuerdos */
+        .memories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .memories img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 2px solid rgba(255, 255, 255, .15);
+            transition: .4s;
+            cursor: pointer;
+        }
+
+        .memories img:hover {
+            transform: translateY(-6px) scale(1.05);
+            border-color: rgba(255, 77, 109, .7);
+        }
+
+        /* 🔍 visor */
+        .viewer {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .92);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+
+            opacity: 0;
+            pointer-events: none;
+            transition: .4s;
+
+            backdrop-filter: blur(10px);
+        }
+
+        .viewer.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .viewer img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 25px;
+
+            box-shadow:
+                0 0 50px rgba(255, 255, 255, .15);
+
+            animation: showImage .4s ease;
+        }
+
+        @keyframes showImage {
+            from {
+                transform: scale(.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+            color: #ff4d6d;
+        }
+
+        /* 📱 TABLETS */
+        @media screen and (max-width: 1100px) {
+
+            body {
+                overflow-y: auto;
+                align-items: flex-start;
+            }
+
+            .card {
+                grid-template-columns: 1fr;
+            }
+
+            .left {
+                min-height: 420px;
+            }
+
+            .right {
+                padding: 40px 30px;
+            }
+
+            .right h2 {
+                font-size: 42px;
+            }
+
+            .photo-text h1 {
+                font-size: 46px;
+            }
+
+            .memories {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* 📱 CELULARES */
+        @media screen and (max-width: 768px) {
+
+            body {
+                padding: 12px;
+            }
+
+            .card {
+                border-radius: 25px;
+            }
+
+            .left {
+                min-height: 300px;
+            }
+
+            .photo-text {
+                left: 25px;
+                bottom: 25px;
+            }
+
+            .photo-text h1 {
+                font-size: 34px;
+            }
+
+            .photo-text p {
+                width: 100%;
+                font-size: 14px;
+            }
+
+            .right {
+                padding: 28px 20px;
+            }
+
+            .tag {
+                font-size: 12px;
+            }
+
+            .right h2 {
+                font-size: 30px;
+            }
+
+            .message {
+                font-size: 14px;
+                line-height: 1.8;
+            }
+
+            .message h3 {
+                font-size: 22px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+                border-radius: 18px;
+            }
+
+            .memories {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .close {
+                top: 20px;
+                right: 20px;
+                font-size: 28px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="heart">
-        <svg viewBox="0 0 200 190" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-                <linearGradient id="heartGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#ff4b4b" />
-                    <stop offset="100%" stop-color="#a60000" />
-                </linearGradient>
 
-                <radialGradient id="shineGrad" cx="35%" cy="28%" r="35%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
-                </radialGradient>
-            </defs>
+    <!-- ✨ estrellas -->
+    <div class="stars"></div>
 
-            <path
-                d="M100 30 C60 -10 15 25 15 70 C15 130 100 175 100 175 C100 175 185 130 185 70 C185 25 140 -10 100 30 Z"
-                fill="url(#heartGrad)" />
+    <!-- ❤️ partículas -->
+    <div class="particle" style="left:10%; animation-delay:0s;">❤</div>
+    <div class="particle" style="left:20%; animation-delay:2s;">❤</div>
+    <div class="particle" style="left:35%; animation-delay:5s;">❤</div>
+    <div class="particle" style="left:50%; animation-delay:1s;">❤</div>
+    <div class="particle" style="left:70%; animation-delay:4s;">❤</div>
+    <div class="particle" style="left:85%; animation-delay:7s;">❤</div>
 
-            <path
-                d="M58 48 C54 36 44 30 35 40 C30 55 42 68 55 70 C70 72 80 60 90 50 C96 44 104 42 110 45 C125 55 138 68 145 55 C150 43 140 30 131 40 C120 48 108 55 95 55 C82 55 70 50 58 48 Z"
-                fill="url(#shineGrad)" opacity="0.45" />
-        </svg>
+    <!-- 💖 tarjeta -->
+    <div class="card">
+
+        <!-- 📸 izquierda -->
+        <div class="left">
+
+            <img src="principal.jpeg" class="main-photo">
+
+            <div class="overlay"></div>
+
+            <div class="photo-text">
+                <h1>Feliz<br>Cumpleaños ❤️</h1>
+
+                <p>
+                    Gracias por existir y hacer mi vida más bonita cada día.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- 💌 derecha -->
+        <div class="right">
+
+            <div class="tag">
+                ✨ Para la niña más hermosa
+            </div>
+
+            <h2>
+                Mi querida <span>Alejandra</span>
+            </h2>
+
+            <div class="message">
+
+                <p>
+                    Dicen que conoces a la persona que cambiará tu vida cuando te sientes perdido
+                    y todo empieza a perder sentido… y creo que eso me pasó contigo.
+                </p>
+
+                <br>
+
+                <p>
+                    Te conocí en un lugar donde todo parecía pasajero, una discoteca donde nadie
+                    espera encontrar algo real, pero ahí estabas tú… y sin darme cuenta te
+                    convertiste en mi luz.
+                </p>
+
+                <br>
+
+                <p>
+                    Conocí a una chica hermosa, pero no solo por fuera, sino por la manera en que
+                    fue cambiando mi vida poco a poco.
+                </p>
+
+                <br>
+
+                <p>
+                    Porque desde hace mucho tiempo siento que eres la mujer con la que quiero
+                    compartir mi vida.
+                </p>
+
+                <br>
+
+                <h3>
+                    Hoy tengo la oportunidad más grande de demostrarte cuánto te amo ❤️
+                </h3>
+
+                <p>
+                    Quiero una vida contigo Gorda 🫶🏻
+                    <br>
+                    Quiero acompañarte en las buenas y en las malas.
+                    <br>
+                    Quiero hacerte feliz hoy, mañana y siempre.
+                </p>
+
+                <br>
+
+                <p>
+                    Gracias por llegar a mi vida.
+                    <br>
+                    Gracias por existir.
+                </p>
+
+                <br><br>
+
+                <h2 style="
+                    color:#ff4d6d;
+                    font-size:34px;
+                    line-height:1.3;
+                ">
+                    Feliz Cumpleaños 🎂 mi amor
+                    <br>
+                    Te amo muchísimo ❤️🫂
+                </h2>
+
+            </div>
+
+            <!-- ❤️ botón -->
+            <button class="btn" onclick="playMusic()">
+                ▶ Reproducir nuestra canción
+            </button>
+
+            <!-- 📸 recuerdos -->
+            <div class="memories">
+
+                <img src="ander1.jpeg" onclick="openViewer(this.src)">
+                <img src="ander2.jpeg" onclick="openViewer(this.src)">
+                <img src="ander3.jpeg" onclick="openViewer(this.src)">
+                <img src="ander4.jpeg" onclick="openViewer(this.src)">
+                <img src="ander5.jpeg" onclick="openViewer(this.src)">
+                <img src="ander6.jpeg" onclick="openViewer(this.src)">
+                <img src="ander7.jpeg" onclick="openViewer(this.src)">
+                <img src="ander8.jpeg" onclick="openViewer(this.src)">
+                <img src="ander9.jpeg" onclick="openViewer(this.src)">
+                <img src="ander10.jpeg" onclick="openViewer(this.src)">
+                <img src="ander11.jpeg" onclick="openViewer(this.src)">
+                <img src="ander12.jpeg" onclick="openViewer(this.src)">
+
+            </div>
+
+        </div>
+
     </div>
+
+    <!-- 🔍 visor -->
+    <div class="viewer" id="viewer">
+
+        <span class="close" onclick="closeViewer()">✕</span>
+
+        <img id="viewerImg">
+
+    </div>
+
+    <!-- 🎵 música -->
+    <audio id="music" loop>
+        <source src="Mi Vida Entera.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+
+        /* ✨ estrellas */
+        const stars = document.querySelector('.stars');
+
+        for (let i = 0; i < 120; i++) {
+
+            const s = document.createElement('span');
+
+            s.style.left = Math.random() * 100 + "%";
+            s.style.top = Math.random() * 100 + "%";
+
+            s.style.animationDelay = Math.random() * 5 + "s";
+
+            stars.appendChild(s);
+        }
+
+        /* 🎵 música */
+        function playMusic() {
+
+            document.getElementById("music").play();
+
+        }
+
+        /* 🔍 abrir visor */
+        function openViewer(src) {
+
+            document.getElementById("viewerImg").src = src;
+
+            document.getElementById("viewer")
+                .classList.add("active");
+
+        }
+
+        /* ❌ cerrar visor */
+        function closeViewer() {
+
+            document.getElementById("viewer")
+                .classList.remove("active");
+
+        }
+
+        /* cerrar tocando fondo */
+        document.getElementById("viewer")
+            .addEventListener("click", function (e) {
+
+                if (e.target.id === "viewer") {
+
+                    closeViewer();
+
+                }
+
+            });
+
+    </script>
+
 </body>
 
 </html>
